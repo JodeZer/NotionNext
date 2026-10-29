@@ -8,15 +8,19 @@
 
 Notion支持在文本上添加链接，从而实现点击文字跳转到任意指定页面
 
-> **💡** 示例效果：
+::: tip 提示
+示例效果：
 点击跳转到我的另一篇文章 → 《‣》
+:::
 
 本篇将介绍如何使用内链和外链，在SEO中[内链和外链都是很重要的指标](https://seo.tangly1024.com/%E4%BA%8C%E3%80%81%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8E%9F%E7%90%86/seo-backlinks)。
 
 
 ## Notion内链
 
-> **💡** 在 [v4.5.2](https://github.com/tangly1024/NotionNext/releases/tag/v4.5.2) 之前的版本中，添加博客文章的内链，需要在网页中打开你的博客并复制完整url，再粘贴到你的notion中。
+::: tip 提示
+在 [v4.5.2](https://github.com/notionnext-org/NotionNext/releases/tag/v4.5.2) 之前的版本中，添加博客文章的内链，需要在网页中打开你的博客并复制完整url，再粘贴到你的notion中。
+:::
 
 例如：浏览器中复制 [https://blog.tangly1024.com/article/the-ai-era](https://blog.tangly1024.com/article/the-ai-era) ，然后将URL粘贴在Notion的文字上，从而实现文字点击跳转 →《[文字链接](https://blog.tangly1024.com/article/the-ai-era)》 。
 
@@ -77,7 +81,9 @@ Notion支持在文本上添加链接，从而实现点击文字跳转到任意�
 
 ### 二、快捷键 `ctrl`+`k`
 
-> **💡** 经评论区的D_super大佬提醒，可用快捷键添加链接。
+::: tip 提示
+经评论区的D_super大佬提醒，可用快捷键添加链接。
+:::
 
 选中要添加链接的文字，按下键盘的`ctrl`+`k`（mac系统是`cmd`+`k`），即可弹出链接编辑框，如下图：
 

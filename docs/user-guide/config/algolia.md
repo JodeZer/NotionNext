@@ -5,10 +5,10 @@
 > 原栏目：🧷 外部扩展
 > 摘要：NotionNext如何配置Algolia
 
-> **❓**
->
+::: info 问题
 NotionNext4.0 系列支持algolia全文搜索
-> 这样即使你的站点是纯静态部署，也可以支持全文搜索。
+这样即使你的站点是纯静态部署，也可以支持全文搜索。
+:::
 
 
 ## 什么是Algolia
@@ -37,12 +37,12 @@ Algolia是一家提供全文搜索和实时搜索解决方案的云服务提供�
 
 ## 如何开启Algolia搜索
 
-> **❓**
->
+::: info 问题
 ~~目前只有HEO主题支持Algolia搜索弹框
-> ~~所有主题已支持Algolia
+~~所有主题已支持Algolia
+:::
 
-只需在部署平台的环境变量中添加以下四项配置即可开启，相关配置可参考仓库 [conf/plugin.config.js](https://github.com/tangly1024/NotionNext/blob/main/conf/plugin.config.js)。
+只需在部署平台的环境变量中添加以下四项配置即可开启，相关配置可参考仓库 [conf/plugin.config.js](https://github.com/notionnext-org/NotionNext/blob/main/conf/plugin.config.js)。
 
 在algolia后台可以查询到 apikey相关参数，[https://dashboard.algolia.com/account/api-keys/](https://dashboard.algolia.com/account/api-keys/)
 

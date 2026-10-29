@@ -6,10 +6,10 @@
 > 标签：NotionNext、部署方案、VPS
 > 摘要：在你的云服务器上手动部署NotionNext
 
-> **💡**
->
+::: tip 提示
 更新记录：
-> 20250708，添加了用Docker运行项目的文档教程。
+20250708，添加了用Docker运行项目的文档教程。
+:::
 
 
 ## 前言
@@ -18,13 +18,13 @@ NotionNext可以轻松地使用Vercel免费托管，不过免费的流量和函�
 
 用国内的VPS部署服务、会大大提升网站的访问速度。
 
-> **💡**
->
+::: tip 提示
 可以选择裸机安装Nodejs环境启动项目，注意：服务器的操作系统、CPU内存配置都有可能影响到服务运行。推荐用Docker容器化部署。
+:::
 
-> **💡**
->
+::: tip 提示
 比较推荐有技术经验的小伙伴使用这套方案！
+:::
 
 分享一篇网友自己实践分享的教程：
 
@@ -35,9 +35,9 @@ NotionNext可以轻松地使用Vercel免费托管，不过免费的流量和函�
 
 ## 安装步骤
 
-> **💡**
->
+::: tip 提示
 准备一台任意操作系统的VPS云服务器，不同系统的安装步骤大同小异，以下我用 `linux-centos-7` 主机为例
+:::
 
 安装分为三个步骤，一是下载NotionNext代码；二是安装运行环境、三是启动项目。
 
@@ -45,13 +45,13 @@ NotionNext可以轻松地使用Vercel免费托管，不过免费的流量和函�
 ### 一、NotionNext代码下载
 
 1. 安装Git
-> **💡**
->
+::: tip 提示
 git是一个代码托管工具，你可以用它来下载github上的代码。
 ```Bash
 # 一个命令安装
 yum install git -y
 ```
+:::
 <details>
 <summary>执行效果</summary>
 
@@ -143,7 +143,7 @@ Complete!
 cd ~
 
 # 将Git上的代码下载到服务器中 ;
-git clone https://github.com/tangly1024/NotionNext &&
+git clone https://github.com/notionnext-org/NotionNext &&
 
 # 若您的服务器因为网络问题，无法访问github，可手动下载NotionNext代码 上传至服务器
 ```
@@ -156,7 +156,7 @@ git clone https://github.com/tangly1024/NotionNext &&
 
 #### 1. Docker运行
 
-原先文档是推荐在服务器上使用NodeJS环境，奈何在NotionNext V4.0 之后的新版要用到 Node 20 及以上的环境，这里有部分服务器无法兼容安装。同时Docker本身的稳定性也更加适合在生产环境使用，因此我在2025年7月8日更新了这部分手册，加入了Docker运行方案。
+原先文档是推荐在服务器上使用NodeJS环境，奈何当前新版要用到 Node 22 及以上的环境，这里有部分服务器无法兼容安装。同时Docker本身的稳定性也更加适合在生产环境使用，因此我在2025年7月8日更新了这部分手册，加入了Docker运行方案。
 
 1. 安装Docker最新版(CentOS为例)
 ```Bash
@@ -193,7 +193,7 @@ cd NotionNext
 # 2.创建构建文件
 cat &gt; Dockerfile &lt;&lt;EOF
 # 第一阶段：基础镜像
-FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/library/node:20-alpine AS base
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/library/node:22-alpine AS base
 
 # 第二阶段：依赖安装
 FROM base AS deps
@@ -283,12 +283,12 @@ docker run -d -p 3000:3000 --name app --restart unless-stopped my-app
 
 - 关于NodeJs环境的警告
   - 如果服务器版本不兼容最新版本的nodejs，运行时出现如下错误，需要尝试升级系统的模块组件（危险操作），或尝试用上面推荐的Docker方案。
-> **⚠️**
->
+::: warning 注意
 运行nodejs命令时出现如下相关错误：
-> `npm install -g yarn
-> `
-> node: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.21' not found (required by node) node: /lib64/libstdc++.so.6: version `
+`npm install -g yarn
+`
+node: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.21' not found (required by node) node: /lib64/libstdc++.so.6: version `
+:::
 
 安装NVM与NodeJS步骤：
 
@@ -297,11 +297,11 @@ docker run -d -p 3000:3000 --name app --restart unless-stopped my-app
 # 用git从github下载nvm源码。
 git clone https://github.com/cnpm/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
 ```
-> **❓**
->
+::: info 问题
 若您的服务器 因为网络限制 无法访问github，可使用国内的gitee下载nvm源码：
->
-> `git clone https://gitee.com/koalakit/nvm.git ~/.nvm && cd ~/.nvm && git checkout \`git describe --abbrev=0 --tags``
+
+`git clone https://gitee.com/koalakit/nvm.git ~/.nvm && cd ~/.nvm && git checkout \`git describe --abbrev=0 --tags``
+:::
 
 1. 使用nvm安装Nodejs
 ```Bash
@@ -311,14 +311,14 @@ echo "source ~/.nvm/nvm.sh" &gt;&gt; ~/.bashrc
 # 2. 更新变量环境
 source ~/.bashrc
 
-# 3. 安装 nodejs ， 这里举例使用 Node 20（与官方 README 要求一致），其它版本请自行按需选择
-nvm install 20
+# 3. 安装 nodejs ， 这里举例使用 Node 22（与官方 README 要求一致），其它版本请自行按需选择
+nvm install 22
 ```
-> **💡**
->
+::: tip 提示
 题外话：
-> 用 `nvm list-remote` 命令可查看所有可安装的nodejs版本
-> 用 `nvm ls`可查看所有已安装到本地的nodejs 版本
+用 `nvm list-remote` 命令可查看所有可安装的nodejs版本
+用 `nvm ls`可查看所有已安装到本地的nodejs 版本
+:::
 
 1. 安装yarn环境
 NodeJS 自带了 NPM（Node Package Manager），他可以用来安装打包编译NotionNext这类基于Webpack打包的项目。不过npm不太好用，这里安装一个npm升级版yarn。
@@ -508,13 +508,13 @@ info  - Loaded env from /root/NotionNext/.env.local
 
 ## 三、访问项目
 
-> **💡**
->
+::: tip 提示
 项目默认将在 3000端口启动，访问你的服务器 [http://ip:3000](http://ip:3000) 即可打开网站。
+:::
 
-> **💡**
->
+::: tip 提示
 有时候3000端口可能无法访问，原因是服务器防火墙，以及云服务厂商的安全组限制。
+:::
 
 <details>
 <summary>关于阿里云服务器安全组 点击展开</summary>
@@ -528,16 +528,16 @@ info  - Loaded env from /root/NotionNext/.env.local
 
 ![Untitled](/legacy/14cdfe822241c594.png)
 
-> **💡**
->
+::: tip 提示
 这种模式运行，您的服务器控制台会实时打印出网站的日志，以便于调试和排查问题。
+:::
 
 
 ## 四、NodeJS项目后台运行
 
-> **⚠️**
->
+::: warning 注意
 若使用的是系统的NodeJs方式运行，则需要此处的步骤进行后台挂起，若用的是Docker运行，则此章节的文档可以忽略。
+:::
 
 直接使用 `yarn start`启动服务主要用于调试排查日志，一旦你关闭ssh终端或登出服务器，这个进程也会随之关闭。
 
@@ -554,9 +554,9 @@ cd NotionNext
 
 nohup yarn start &gt;/dev/null 2&gt;&1 &
 ```
-> **💡**
->
+::: tip 提示
 若想要输出日志文件，可执行`nohup yarn start &gt; notionnext.log 2&gt;&1 &`；
+:::
 <details>
 <summary>执行结果</summary>
 
@@ -585,9 +585,9 @@ PM2作为Node的进程管理工具，可以提升您维护站点的效率，您�
 
 ## 五、NodeJS网站崩溃问题
 
-> **⚠️**
->
+::: warning 注意
 此处特指用Nodejs运行项目可能出现的问题，若使用docker运行则可忽略此章节文档。
+:::
 
 部分网友的服务器运行NotionNext站点后，总会出现过一段时间 站点进程莫名其妙被杀死，导致网站暂停，这个问题，我目前还没有找到原因，也有可能是服务器配置不够导致的。
 
@@ -652,16 +652,16 @@ pkill -f "yarn"
 
 ## 六、关于本地代码配置修改
 
-> **⚠️**
->
+::: warning 注意
 如果用Docker方案，建议直接修改**NOTION_CONFIG**或**配置文件config.js**，因为Docker对环境变量的兼容性不太够。
+:::
 
 
 ### 1.用环境变量修改配置
 
-> **💡**
->
+::: tip 提示
 用环境变量的好处是，不需要修改代码，不用重新打包编译。直接重启服务即可。
+:::
 
 - `NOTION_PAGE_ID`等诸多配置支持用环境变量配置。
 ```Bash
@@ -672,18 +672,18 @@ NOTION_PAGE_ID=29d5ia78b858e4a3bbc13e51b5400fb82
 # 3.后台运行
 nohup yarn start &gt;/dev/null 2&gt;&1 &
 ```
-> **💡**
->
+::: tip 提示
 删除环境变量可用以下命令： `unset NOTION_PAGE_ID`
+:::
 
-- 支持环境变量的配置可参考[blog.config.js](https://github.com/tangly1024/NotionNext/blob/main/blog.config.js) 文件
+- 支持环境变量的配置可参考[blog.config.js](https://github.com/notionnext-org/NotionNext/blob/main/blog.config.js) 文件
 
 
 ### 2.修改代码
 
 - 如果修改blog.config.js或其他代码文件，NodeJS环境需要重新执行 `yarn build` 才可 生效，Docker环境重新执行前面的docker build 相关命令即可重新构建镜像。
 
-- 您可以在项目根目录的[`.env.local`](https://github.com/tangly1024/NotionNext/blob/main/.env.local)文件中配置您的环境变量
+- 您可以在项目根目录的[`.env.local`](https://github.com/notionnext-org/NotionNext/blob/main/.env.local)文件中配置您的环境变量
 
 - 重新编译后需要先关闭旧进程，再用 `yarn start` 重启服务 。
 
@@ -739,9 +739,9 @@ sudo systemctl reload nginx
 ```
 ![Untitled](/legacy/d9c0b9c8993d87de.png)
 ![Untitled](/legacy/57309076477fc1c5.png)
-> **💡**
->
+::: tip 提示
 如果访问出错可能是SELinux设置不允许nginx的转发 ，执行 `setsebool -P httpd_can_network_connect on` 即可修复。
+:::
 
 ## VPS部署NotionNext如何自动更新？
 因为代码是在自己的服务器上拉取和部署，所以每次都要执行更新代码，编译代码，并重启服务的步骤，建议是创建一个`update.sh`脚本在服务器上。
@@ -753,7 +753,7 @@ sudo systemctl reload nginx
 cd NotionNext
 
 # 从仓库更新拉取最新代码
-git pull https://github.com/tangly1024/NotionNext
+git pull https://github.com/notionnext-org/NotionNext
 
 # 编译新版代码
 yarn build

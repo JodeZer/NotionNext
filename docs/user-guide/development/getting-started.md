@@ -6,9 +6,9 @@
 > 标签：NotionNext
 > 摘要：小白入门如何开发notionnext，下载NotionNext、启动NotionNext、提交合并到NotionNext等。
 
-> **⚠️**
->
+::: warning 注意
 此处文档较旧。如需更全面的开发指导，请阅读项目仓库中的 [README.md](http://README.md)，以及 /docs 目录下的相关文档。
+:::
 
 
 ## 前言
@@ -29,9 +29,9 @@ NotionNext操作手册中，有关于自定义脚本和样式的引入方式；�
 
 1. 在`blog.config.js`的`CUSTOM_EXTERNAL_JS`、`CUSTOM_EXTERNAL_CSS`中也可以引入第三方的脚本。
 
-> **💡**
->
+::: tip 提示
 用这两种方式引入脚本，即使本机上没有安装nodejs等开发环境，也可以直接在浏览器控制台中编写调试。
+:::
 
 
 #### Notion中自定义JS和CSS
@@ -43,19 +43,19 @@ NotionNext操作手册中，有关于自定义脚本和样式的引入方式；�
 
 ## 自行开发
 
-如果上述的配置方式，不能满足您的需要，例如新增组件、深度定制等等。您可以选择在github上[发起issue](https://github.com/tangly1024/NotionNext/issues/new/choose)，提出改进页面的建议，或者遵循此教程，进行您的开发之旅。
+如果上述的配置方式，不能满足您的需要，例如新增组件、深度定制等等。您可以选择在github上[发起issue](https://github.com/notionnext-org/NotionNext/issues/new/choose)，提出改进页面的建议，或者遵循此教程，进行您的开发之旅。
 
-> **💡**
->
+::: tip 提示
 可选Codespaces云开发，以及本地开发两种方案。
+:::
 
 
 ### 一、云开发(Codespaces)
 
-> **💡**
->
+::: tip 提示
 这是一个可选方案，相比本地开发，您不需要在电脑上安装环境；直接将Github仓库导入到云开发环境，在线编辑即可。
-> Codespaces是Github官方提供的云开发环境。
+Codespaces是Github官方提供的云开发环境。
+:::
 
 
 #### 导入启动项目
@@ -93,10 +93,10 @@ github 会临时分配给您一个临时的域名，用于开发调试
 
 
 #### 1.准备开发环境
-> **💡**
->
+::: tip 提示
 您的电脑上需要有一个开发环境NodeJs、以及代码编辑器VSCode，
   1. NodeJS 运行环境
+:::
 <details>
 <summary>安装步骤</summary>
 
@@ -104,23 +104,23 @@ github 会临时分配给您一个临时的域名，用于开发调试
 [Node.js](https://nodejs.org/zh-cn/#home-downloadhead)
 
 Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
-> **💡**
->
-建议使用 **Node 20**（与仓库 README、`.nvmrc` 一致，例如 `20.20.0`）；若暂时仍在 18 系，请至少使用 **≥ 18.17.0**（如 18.20.4）。安装后执行 `node -v` 自检。
->
-> 个别小版本若遇构建问题，请以 GitHub 仓库 README 与 Issues 的最新说明为准。
+::: tip 提示
+建议使用 **Node 22**（与仓库 README、`.nvmrc` 一致）。安装后执行 `node -v` 自检。
+
+个别小版本若遇构建问题，请以 GitHub 仓库 README 与 Issues 的最新说明为准。
       - 安装成功检验
 安装成功，测试安装是否成功，运行CMD，分别输入node -v 和 npm -v 分别查看node和npm的版本号，如下图所示：
 ![Untitled](/legacy/3aaab0da3bfc8fc2.png)
-> **💡**
->
+**💡**
+
 node是基础运行环境，npm是依赖包的管理组件
-> **💡**
->
+**💡**
+
 如果执行 npm -v 出现异常 **npm : 无法加载文件 D:\nodejs\npm.ps1 ，可以参考此文: **
-> [npm : 无法加载文件 D:\nodejs\npm.ps1-CSDN博客](https://blog.csdn.net/qq_29385297/article/details/144445759)
->
-> 文章浏览阅读1.1k次，点赞11次，收藏5次。npm : 无法加载文件 D:\ nodejs\ npm.ps1
+[npm : 无法加载文件 D:\nodejs\npm.ps1-CSDN博客](https://blog.csdn.net/qq_29385297/article/details/144445759)
+
+文章浏览阅读1.1k次，点赞11次，收藏5次。npm : 无法加载文件 D:\ nodejs\ npm.ps1
+:::
 
 </details>
   1. VsCode 编辑器
@@ -140,12 +140,12 @@ Visual Studio Code is free and available on your favorite platform - Linux, macO
 Visual Studio Code是一款支持多种语言和格式的编辑器，那么，怎么把界面设置成中文的呢？今天就和大家一起把Visual Studio Code界面设置成中文 打开Visual Studio Code 点击"应用"按钮 输入"Chinese (Simplified) Language Pack for Visual Studio Code"并敲回车键 点击第一个选项 点击Install 点击Restart Now 这样就设置完成了 点击下方链接 点击Install 点击Continue 如果浏览器有拦截，请点击打开（各浏览器的界面不同） 点击Install 最后点击Restart Now即可 END 喜欢请点赞+关注
 
 </details>
-> **💡**
->
+::: tip 提示
 相关阅读
->     - [NodeJS是什么](http://c.biancheng.net/view/9338.html)
->     - [NPM使用介绍](https://www.runoob.com/nodejs/nodejs-npm.html)
->     - [什么是React](https://www.jianshu.com/p/163bfc500549)
+    - [NodeJS是什么](http://c.biancheng.net/view/9338.html)
+    - [NPM使用介绍](https://www.runoob.com/nodejs/nodejs-npm.html)
+    - [什么是React](https://www.jianshu.com/p/163bfc500549)
+:::
 
 
 #### 2.导入启动项目
@@ -191,9 +191,9 @@ npm install -g yarn --registry=https://registry.npm.taobao.org
 yarn config set registry https://registry.npm.taobao.org/
 yarn install
 ```
-> **💡**
->
+::: tip 提示
 静候片刻，首次安装依赖需要花一点时间
+:::
 
 </details>
 <details>
@@ -230,9 +230,9 @@ yarn start  # 运行打包后的项目构建服务
 ![Untitled](/legacy/cf986649cac87c10.png)
 
 </details>
-> **💡**
->
+::: tip 提示
 调试模式下：代码的每次修改会实时影响到你的页面，不需要刷新或重启服务
+:::
 
 
 #### 3.本地开发环境配置
@@ -318,12 +318,12 @@ VSCode 里会出现三个启动项：
 
 ![Untitled](/legacy/9147bf402e7ee06e.png)
 
-> **💡**
->
+::: tip 提示
 关于NextJs框架请阅读官方文档获取帮助
-> [快速入门 | Next.js](https://www.nextjs.cn/docs/getting-started)
->
-> 欢迎阅读 Next.js 文档！ 如果你是初学 Next.js，我们建议你从 互动课程 开始。 通过这些带小测验的互动课程你将学到使用 Next.js 所需的全部知识。 如果你有任何与 Next.js 相关的问题，欢迎随时在 GitHub Discussions 上向我们的社区寻求帮助。 我们建议使用 create-next-app 创建新的 Next.js 应用程序，它会自动为你设置所有内容。创建项目，请运行： npx create-next-app@latest yarn create next-app 如果你希望使用 TypeScript 开发项目，可以通过 --typescript 参数创建 TypeScript 项目： npx create-next-app@latest --typescript yarn create next-app --typescript 安装完成后: 运行 npm run dev 或 yarn dev 来启动开发服务器，访问地址为 http://localhost:3000。
+[快速入门 | Next.js](https://www.nextjs.cn/docs/getting-started)
+
+欢迎阅读 Next.js 文档！ 如果你是初学 Next.js，我们建议你从 互动课程 开始。 通过这些带小测验的互动课程你将学到使用 Next.js 所需的全部知识。 如果你有任何与 Next.js 相关的问题，欢迎随时在 GitHub Discussions 上向我们的社区寻求帮助。 我们建议使用 create-next-app 创建新的 Next.js 应用程序，它会自动为你设置所有内容。创建项目，请运行： npx create-next-app@latest yarn create next-app 如果你希望使用 TypeScript 开发项目，可以通过 --typescript 参数创建 TypeScript 项目： npx create-next-app@latest --typescript yarn create next-app --typescript 安装完成后: 运行 npm run dev 或 yarn dev 来启动开发服务器，访问地址为 http://localhost:3000。
+:::
 
 
 #### TailWindCSS

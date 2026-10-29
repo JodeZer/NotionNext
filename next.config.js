@@ -131,7 +131,8 @@ const preBuild = (function () {
 })()
 
 function isVersionedPageBlockCacheKey(key) {
-  return /^page_block_.+_\d{10,}$/.test(String(key || ''))
+  const unscopedKey = String(key || '').replace(/^(?:0|[a-f0-9-]{36}):/i, '')
+  return /^page_block_.+_\d{10,}$/.test(unscopedKey)
 }
 
 function pruneTransientNotionDataCache(dataDir) {
@@ -403,6 +404,14 @@ const nextConfig = {
       ]
     },
   webpack: (config, { dev, isServer }) => {
+    config.ignoreWarnings = [
+      ...(config.ignoreWarnings || []),
+      {
+        module: /[\\/]next[\\/]dist[\\/]esm[\\/]client[\\/]components[\\/]navigation\.js$/,
+        message: /useContext.*not exported from ['"]react['"]/i
+      }
+    ]
+
     // 动态主题：添加 resolve.alias 配置，将动态路径映射到实际路径
     config.resolve.alias['@'] = path.resolve(__dirname)
     config.resolve.alias['lodash.throttle'] = path.resolve(

@@ -27,7 +27,9 @@ Zeabur (https://zeabur.com) 是一个帮助开发者们可以一键部署自己�
 
 两个插件均要借助LeanCloud提供的云函数，云数据存储等功能，对于普通开发者来说免费版已经足够使用。
 
-> **😀** 若您使用的是Zeabur的部署方案，则不需要额外注册一个LeanCloud。
+::: tip 提示
+若您使用的是Zeabur的部署方案，则不需要额外注册一个LeanCloud。
+:::
 
 
 ### 获取APP ID 和 APP Key
@@ -70,7 +72,9 @@ Zeabur (https://zeabur.com) 是一个帮助开发者们可以一键部署自己�
 
 </details>
 
-> **💡** 完成配置后重新部署一下Vercel项目即可生效。
+::: tip 提示
+完成配置后重新部署一下Vercel项目即可生效。
+:::
 
 
 ### 其它可选的Valine配置
@@ -98,7 +102,7 @@ valine没有自带后台，可以借助 [Valine-Admin](https://github.com/Desert
   - 可能是Vercel后台没有配置Valine/Waline的环境变量，配置后需要redeploy
 
 1. 评论出现 ‘Unexpected end of JSON input’
-配置的Waline地址有误，检查一下，参考此[issue](https://github.com/tangly1024/NotionNext/issues/308)的回答
+配置的Waline地址有误，检查一下，参考此[issue](https://github.com/notionnext-org/NotionNext/issues/308)的回答
 
 1. 评论出现错误提示 ‘fail to fetch’ 或者 ‘Network Error’
 可能是Vercel部署的Waline出现了跨域网络限制，按F12打开控制台，查看是否有打印“缺少CORS头“，相关的错误提示。
@@ -118,8 +122,6 @@ valine没有自带后台，可以借助 [Valine-Admin](https://github.com/Desert
 [NotionNext如何添加评论插件 | TANGLY's BLOG](/user-guide/comments/overview)
 
 NotionNext添加Cusdis/Giscus/Gitalk/Utterance的步骤教程
-
-[https://source.unsplash.com/random/720x480/?encryption](https://source.unsplash.com/random/720x480/?encryption)
 
 ## 原文链接
 

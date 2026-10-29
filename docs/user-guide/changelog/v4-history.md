@@ -1,13 +1,34 @@
-# V4.0 → V4.9.0
+# V4 发布历史
+
+以下为 v4.10.0 之后的发布记录；较新的版本要点见[最新版本更新日志](./latest.md)。旧版 V4.9.0 及更早版本见本页归档。
+
+| 版本 | 发布日期 | 发布说明 |
+| --- | --- | --- |
+| [v4.11.0](https://github.com/notionnext-org/NotionNext/releases/tag/v4.11.0) | 2026-10-14 | [功能与升级须知](./latest.md#_4-11-0-发布要点) · [完整变更](https://github.com/notionnext-org/NotionNext/compare/v4.10.10...v4.11.0) |
+| [v4.10.10](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.10) | 2026-08-13 | [发布要点](./latest.md#_4-10-10-发布要点) · [完整变更](https://github.com/notionnext-org/NotionNext/compare/v4.10.9...v4.10.10) |
+| [v4.10.9](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.9) | 2026-08-10 | [发布要点](./latest.md#_4-10-9-发布要点) · [完整变更](https://github.com/notionnext-org/NotionNext/compare/v4.10.8...v4.10.9) |
+| [v4.10.8](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.8) | 2026-07-22 | [发布要点](./latest.md#_4-10-8-发布要点) · [完整变更](https://github.com/notionnext-org/NotionNext/compare/v4.10.7...v4.10.8) |
+| [v4.10.7](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.7) | 2026-07-18 | [发布要点](./latest.md#_4-10-7-发布要点) · [完整变更](https://github.com/notionnext-org/NotionNext/compare/v4.10.6...v4.10.7) |
+| [v4.10.6](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.6) | 2026-07-15 | [GitHub Release](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.6) · [完整变更](https://github.com/notionnext-org/NotionNext/compare/v4.10.5...v4.10.6) |
+| [v4.10.5](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.5) | 2026-07-09 | [发布要点](./latest.md#_4-10-5-发布要点) · [完整变更](https://github.com/notionnext-org/NotionNext/compare/v4.10.4...v4.10.5) |
+| [v4.10.4](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.4) | 2026-07-06 | [GitHub Release](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.4) · [完整变更](https://github.com/notionnext-org/NotionNext/compare/v4.10.3...v4.10.4) |
+| [v4.10.3](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.3) | 2026-06-25 | [发布要点](./latest.md#_4-10-3-发布要点) · [完整变更](https://github.com/notionnext-org/NotionNext/compare/v4.10.2...v4.10.3) |
+| [v4.10.2](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.2) | 2026-06-08 | [GitHub Release](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.2) · [完整变更](https://github.com/notionnext-org/NotionNext/compare/v4.10.1...v4.10.2) |
+| [v4.10.1](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.1) | 2026-06-04 | [GitHub Release](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.1) · [完整变更](https://github.com/notionnext-org/NotionNext/compare/v4.10.0...v4.10.1) |
+| [v4.10.0](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.0) | 2026-06-03 | [GitHub Release](https://github.com/notionnext-org/NotionNext/releases/tag/v4.10.0) |
+
+---
+
+# V4.9.0 及更早版本归档
 > 迁移自：[V4.0 → V4.9.0](https://docs.tangly1024.com/article/v4.0)
 > 发布日期：2023-7-8
 > 最后编辑：2025-10-11
 > 原栏目：✨ 更新日志
 > 标签：更新历史
 
-> **💡**
->
+::: tip 提示
 新加入的开发者们技艺高超，为大家带来了大量的优化与改动，感恩！
+:::
 
 
 ## V4.0 更新总览
@@ -374,13 +395,13 @@ blog.config.js 配置文件太多，而且大部分用不到，因此拆分到 /
 
 - 新的主题[Magzine](https://www.notion.so/101f93b9208b8025bc72f0131d58a06e?pvs=25)，用于缓解审美疲劳。
 
-> **💡**
->
+::: tip 提示
 距离V5.0的会员系统越来越近，但考虑到国内使用这种网站登录会有大量的协议、隐私、安全、备案等问题，这样会徒增系统的复杂度。
->
-> 在国外使用Google等第三方登录很方便，在国内就需要进一步考虑后续问题，目前偏向国内使用邮箱注册、结合其它的私域平台提供服务。
->
-> 因此4.7版本中，尝试使用国内的微信公众号作为用户的管理渠道。而站点则作为主要的公域引流和品宣作用。
+
+在国外使用Google等第三方登录很方便，在国内就需要进一步考虑后续问题，目前偏向国内使用邮箱注册、结合其它的私域平台提供服务。
+
+因此4.7版本中，尝试使用国内的微信公众号作为用户的管理渠道。而站点则作为主要的公域引流和品宣作用。
+:::
 
 
 ## V4.7.13(2024-12-28)
@@ -1127,9 +1148,11 @@ by @tangly1024 in [https://github.com/tangly1024/NotionNext/pull/2251](https://g
 ## **v4.2.0(2024-01-21)**
   - 支持在Notion中直接写CSS样式和JS
 ![Untitled](/legacy/a2595a9dcdbad3c0.png)
-> **💡** 以前改动样式、主题的流程太麻烦，门槛也很高，还要改动Github代码提交，太麻烦了，不如简单点，全部放在笔记里。
+::: tip 提示
+以前改动样式、主题的流程太麻烦，门槛也很高，还要改动Github代码提交，太麻烦了，不如简单点，全部放在笔记里。
 未来希望所有的代码都支持在Notion中编辑，包括主题，插件。
   - 文章图片压缩处理，加快打开速度
+:::
 
 </details>
 
@@ -1158,7 +1181,9 @@ export const siteConfig = (key, defaultVal = null, extendConfig) =&gt; {
 绝大部分配置支持在Notion中设置，减少对blog.config.js和vercel环境变量的配置
 
 ![Untitled](/legacy/4b36ee3a8532cf6f.png)
-> **💡** 如何使用config文档，请参考 《[站点配置-配置入门](/user-guide/config-site)》
+::: tip 提示
+如何使用config文档，请参考 《[站点配置-配置入门](/user-guide/config-site)》
+:::
 
 <details>
 <summary>更新详情</summary>

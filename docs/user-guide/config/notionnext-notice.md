@@ -6,8 +6,10 @@
 > 标签：NotionNext
 > 摘要：NotionNext在3.10以后的版本中支持在网站中挂一个公告栏，此功能在3.14版本中完善，所有主题都已支持公告。
 
-> **💡** NotionNext 3.10以后的版本开始支持网站公告，欢迎更新体验。
+::: tip 提示
+NotionNext 3.10以后的版本开始支持网站公告，欢迎更新体验。
 添加公告后，在网站显眼的位置会固定一个页面的内容。公告内容可以是文字视频、内嵌网页等等，有很大的自定义空间。
+:::
 
 
 ## 公告效果
@@ -35,6 +37,8 @@
 
 添加一个Type（类型）为Notice的页面即可，此页面是唯一的，网站只能有一个公告。
 
+对于展示独立公告标题的主题，Notice 页面的标题会优先作为公告标题显示；如果没有可用标题，则继续使用主题原有的「公告 / Announcement」等默认或本地化标题。
+
 ![Untitled](/legacy/56d8cd9cf2c6ec48.png)
 
 
@@ -57,7 +61,7 @@
 ```HTML
 &lt;div className={className}&gt;
     &lt;section id='announcement-wrapper' className="dark:text-gray-300 border dark:border-black rounded-xl lg:p-6 p-4 bg-white dark:bg-hexo-black-gray"&gt;
-        &lt;div&gt;&lt;i className='mr-2 fas fa-bullhorn' /&gt;{locale.COMMON.ANNOUNCEMENT}&lt;/div&gt;
+        &lt;div&gt;&lt;i className='mr-2 fas fa-bullhorn' /&gt;{post?.title || locale.COMMON.ANNOUNCEMENT}&lt;/div&gt;
         {post && (&lt;div id="announcement-content"&gt;
         &lt;NotionPage post={post} className='text-center' /&gt;
     &lt;/div&gt;)}

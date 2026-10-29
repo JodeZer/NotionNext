@@ -14,7 +14,7 @@ NotionNext会扫描/themes目录下的文件夹，并根据文件夹的名字生
 
 ## 主题预览
 
-内置主题以 GitHub 仓库 `[themes/](https://github.com/tangly1024/NotionNext/tree/main/themes)` 目录为准（会随版本迭代增减）。当前主线常见主题包括：`simple`（**新建仓库默认**，见 `blog.config.js` 的 `THEME`）、`next`、`medium`、`hexo`、`fukasawa`、`gitbook`、`matery`、`heo`、`nobelium`、`plog`、`landing`、`nav`、`starter`、`commerce`、`magzine`、`photo`、`movie`、`game`、`fuwari`、`claude`、`proxio`、`typography`、`example` 等。
+内置主题以 GitHub 仓库 `[themes/](https://github.com/notionnext-org/NotionNext/tree/main/themes)` 目录为准（会随版本迭代增减）。当前主线常见主题包括：`simple`（**新建仓库默认**，见 `blog.config.js` 的 `THEME`）、`next`、`medium`、`hexo`、`fukasawa`、`gitbook`、`matery`、`heo`、`nobelium`、`plog`、`landing`、`nav`、`starter`、`commerce`、`magzine`、`photo`、`movie`、`game`、`fuwari`、`claude`、`proxio`、`typography`、`example` 等。
 
 可按用途粗选：GitBook 偏文档；Nav 偏导航聚合；Landing / Starter 偏落地页；Plog、Photo 偏图集；更多说明见各主题子文档或源码中对应 `config.js`。
 
@@ -41,6 +41,34 @@ NotionNext会扫描/themes目录下的文件夹，并根据文件夹的名字生
 
 ## 如何修改默认主题？
 
+### 新手常见问题：固定 simple 主题并隐藏切换按钮
+
+如果你只是想固定使用 `simple` 主题，并且不想让页面显示“切换主题”按钮，不需要改代码。
+
+优先在 Notion Config 表里添加这三项：
+
+```text
+THEME=simple
+THEME_SWITCH=false
+WIDGET_PET_SWITCH_THEME=false
+```
+
+含义如下：
+
+- `THEME=simple`：固定使用 simple 主题。
+- `THEME_SWITCH=false`：隐藏页面上的主题切换按钮。
+- `WIDGET_PET_SWITCH_THEME=false`：防止点击宠物挂件时切换主题。
+
+如果你没有使用 Notion Config，而是在 Vercel 后台配置环境变量，则填写：
+
+```text
+NEXT_PUBLIC_THEME=simple
+NEXT_PUBLIC_THEME_SWITCH=false
+NEXT_PUBLIC_WIDGET_PET_SWITCH_THEME=false
+```
+
+改完后重新部署一次。如果重新部署后仍然不是 `simple`，请先检查 Notion Config 表里是否已经写了其它 `THEME`，因为 Notion Config 的优先级高于 Vercel 环境变量，也高于 GitHub 代码里的默认值。
+
 可以改变blog.config.js配置中`THEME`这一项的值；示例如下：
 
 - 方法1：改动github中的源代码：
@@ -56,7 +84,7 @@ THEME: process.env.NEXT_PUBLIC_THEME || 'simple', // 与当前主仓库默认值
 
 ### 在线切换主题
 
-您可以像我的博客站一样，在页面上开启一个实时切换主题的按钮，以供预览；开启方式：在主仓库 `[conf/widget.config.js](https://github.com/tangly1024/NotionNext/blob/main/conf/widget.config.js)` 中调整（或在部署后台配置环境变量 `NEXT_PUBLIC_THEME_SWITCH`）：
+您可以像我的博客站一样，在页面上开启一个实时切换主题的按钮，以供预览；开启方式：在主仓库 `[conf/widget.config.js](https://github.com/notionnext-org/NotionNext/blob/main/conf/widget.config.js)` 中调整（或在部署后台配置环境变量 `NEXT_PUBLIC_THEME_SWITCH`）：
 
 ```JavaScript
 THEME_SWITCH: process.env.NEXT_PUBLIC_THEME_SWITCH || false, // 是否显示切换主题按钮；预览站常开便于体验
@@ -67,6 +95,10 @@ THEME_SWITCH: process.env.NEXT_PUBLIC_THEME_SWITCH || false, // 是否显示切�
 开启后效果如下：网页上会始终悬挂一个可以拖拽的面板，用于切换主题。
 
 ![Untitled](/legacy/8887786b5f3ad411.png)
+
+### 主题控制台与调色板
+
+新版主题切换工具同时提供“主题切换”和“主题控制台”两个入口。主题控制台可以实时调整当前主题的信息配置与配色，确认效果后复制到 `notion_config`。详细使用方式见 [主题控制台与调色板](./theme-console.md)。
 
 
 ## 如何个性化您的主题
