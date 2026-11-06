@@ -1,5 +1,16 @@
 import { render } from '@testing-library/react'
 import SEO, { generateStructuredData } from '@/components/SEO'
+import { useRouter } from 'next/router'
+
+jest.mock('next/router', () => ({ useRouter: jest.fn() }))
+jest.mock('@/lib/utils', () => ({
+  isHttpLink: value => /^https?:\/\//.test(value),
+  loadExternalResource: jest.fn().mockResolvedValue('')
+}))
+
+beforeEach(() => {
+  useRouter.mockReturnValue({ route: '/', query: {} })
+})
 
 jest.mock('@/lib/config', () => ({
   siteConfig: jest.fn()
@@ -30,7 +41,7 @@ const baseSiteConfig = {
   TITLE: 'Example Blog'
 }
 
-const renderSeo = fontUrl => {
+const renderSeo = (fontUrl, props = {}) => {
   siteConfig.mockImplementation((key, defaultVal) => {
     if (key === 'FONT_URL') return fontUrl
     return Object.prototype.hasOwnProperty.call(baseSiteConfig, key)
@@ -47,9 +58,58 @@ const renderSeo = fontUrl => {
         pageCover: '/cover.png',
         link: 'https://example.com'
       }}
+      {...props}
     />
   )
 }
+
+describe('SEO page metadata', () => {
+  it('keeps the site title while a route has no article data', () => {
+    useRouter.mockReturnValue({ route: '/[prefix]', query: {} })
+    const { container } = renderSeo('')
+    expect(container.querySelector('title').textContent).toBe('Example Blog | Example description')
+    expect(container.textContent).not.toContain('loading')
+  })
+
+  it('uses the article summary in search, social and structured metadata', () => {
+    useRouter.mockReturnValue({ route: '/[prefix]/[slug]', query: {} })
+    const { container } = renderSeo('', { post: {
+      type: 'Post', title: 'GEMM derivation', slug: 'article/gemm',
+      summary: 'How row and column partitions affect gradients.'
+    } })
+    expect(container.querySelector('meta[name="description"]').content)
+      .toBe('How row and column partitions affect gradients.')
+    expect(container.querySelector('meta[property="og:description"]').content)
+      .toBe('How row and column partitions affect gradients.')
+    expect(container.querySelector('link[rel="canonical"]').href)
+      .toBe('https://example.com/article/gemm')
+    expect(JSON.parse(container.querySelector('script[type="application/ld+json"]').textContent))
+      .toMatchObject({ '@type': 'BlogPosting', description: 'How row and column partitions affect gradients.' })
+  })
+
+  it.each(['/404', '/search', '/search/[keyword]', '/search/[keyword]/page/[page]'])(
+    'keeps utility page %s out of the index', route => {
+      useRouter.mockReturnValue({ route, query: {} })
+      const { container } = renderSeo('')
+      expect(container.querySelector('meta[name="robots"]').content).toBe('noindex, follow')
+    }
+  )
+
+  it('keeps password-protected articles out of the index', () => {
+    const { container } = renderSeo('', { post: { password: 'digest' } })
+    expect(container.querySelector('meta[name="robots"]').content).toBe('noindex, follow')
+  })
+
+  it('escapes script delimiters in structured metadata', () => {
+    useRouter.mockReturnValue({ route: '/[prefix]', query: {} })
+    const { container } = renderSeo('', { post: {
+      type: 'Post', title: '</script><script>alert(1)</script>', slug: 'article/test'
+    } })
+    const json = container.querySelector('script[type="application/ld+json"]').textContent
+    expect(json).not.toContain('</script>')
+    expect(JSON.parse(json).headline).toContain('</script>')
+  })
+})
 
 describe('SEO structured data', () => {
   const siteInfo = {

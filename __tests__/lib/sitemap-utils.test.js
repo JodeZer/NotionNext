@@ -1,5 +1,6 @@
 import {
   buildSitemapLoc,
+  buildPublicSitemapFields,
   createSiteUrl,
   normalizeSitemapBaseUrl,
   normalizeSitemapLocale,
@@ -8,6 +9,41 @@ import {
 } from '@/lib/sitemap-utils'
 
 describe('sitemap-utils', () => {
+  describe('buildPublicSitemapFields', () => {
+    it('includes public content with its actual edit date and deduplicates URLs', () => {
+      expect(buildPublicSitemapFields('https://example.com', [
+        { type: 'Post', status: 'Published', slug: 'article/中文', publishDay: '2025-10-01', lastEditedDate: '2026-11-06T01:00:00Z' },
+        { type: 'Post', status: 'Published', slug: 'article/中文', lastEditedDate: '2026-11-01' },
+        { type: 'Page', status: 'Published', slug: 'links' }
+      ])).toEqual([
+        { loc: 'https://example.com', lastmod: '2026-11-06' },
+        { loc: 'https://example.com/article/%E4%B8%AD%E6%96%87', lastmod: '2026-11-06' },
+        { loc: 'https://example.com/links' }
+      ])
+    })
+
+    it('excludes unpublished, protected, non-content and off-site URLs', () => {
+      const pages = [
+        { type: 'Page', status: 'Draft', slug: 'about' },
+        { type: 'Post', status: 'Invisible', slug: 'hidden' },
+        { type: 'Post', status: 'Published', password: 'hash', slug: 'locked' },
+        { type: 'Menu', status: 'Published', slug: 'menu' },
+        { type: 'Post', status: 'Published', slug: '#section' },
+        { type: 'Post', status: 'Published', slug: 'https://external.com/article' }
+      ]
+      expect(buildPublicSitemapFields('https://example.com', pages)).toEqual([{ loc: 'https://example.com' }])
+    })
+
+    it('supports locale prefixes and omits invalid modification dates', () => {
+      expect(buildPublicSitemapFields('https://example.com/', [
+        { type: 'Post', status: 'Published', slug: 'article/test', publishDay: 'invalid' }
+      ], 'zh')).toEqual([
+        { loc: 'https://example.com/zh' },
+        { loc: 'https://example.com/zh/article/test' }
+      ])
+    })
+  })
+
   describe('normalizeSitemapBaseUrl', () => {
     it('trims and removes trailing slashes', () => {
       expect(normalizeSitemapBaseUrl(' https://example.com/// ')).toBe(
