@@ -3,6 +3,7 @@ import getConfig from 'next/config'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { getQueryParam, getQueryVariable, isBrowser } from '../lib/utils'
+import * as gitbookLayouts from './gitbook'
 
 // 在next.config.js中扫描所有主题
 export const { THEMES = [] } = getConfig()?.publicRuntimeConfig || {}
@@ -191,6 +192,9 @@ const getCurrentTheme = (router, fallbackTheme) => {
  */
 export const getBaseLayoutByTheme = theme => {
   const normalizedTheme = normalizeThemeName(theme)
+  // This blog uses Gitbook. Render its layouts synchronously so cold SSR/ISR
+  // responses contain the content instead of a dynamic-import placeholder.
+  if (normalizedTheme === 'gitbook') return gitbookLayouts.LayoutBase
   if (baseLayoutCache.has(normalizedTheme)) {
     return baseLayoutCache.get(normalizedTheme)
   }
@@ -222,6 +226,9 @@ export const DynamicLayout = props => {
 export const useLayoutByTheme = ({ layoutName, theme }) => {
   const router = useRouter()
   const themeQuery = getCurrentTheme(router, theme)
+  if (themeQuery === 'gitbook') {
+    return getThemeExport(gitbookLayouts, layoutName) || gitbookLayouts.LayoutSlug
+  }
   const cacheKey = `${themeQuery}:${layoutName}`
 
   if (layoutByThemeCache.has(cacheKey)) {
